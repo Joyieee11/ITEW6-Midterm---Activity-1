@@ -10,20 +10,32 @@
   </template>
   
   <script>
-  export default {
-    data() {
-      return {
-        username: '',
-        password: ''
-      };
-    },
-    methods: {
-      login() {
-        this.$store.dispatch('login', { username: this.username, password: this.password });
+ export default {
+  data() {
+    return {
+      username: '',
+      password: '',
+      error: null
+    };
+  },
+  methods: {
+    async login() {
+      if (this.username.trim() === '' || this.password.trim() === '') {
+        this.error = 'Username and password are required.';
+        return;
+      }
+
+      try {
+        await this.$store.dispatch('login', { username: this.username, password: this.password });
         this.$router.push('/list');
+      } catch (error) {
+        alert(error.message); // Display error message via an alert
+        this.error = null; // Clear the error state
       }
     }
-  };
+  }
+};
+
   </script>
   
   <style scoped>

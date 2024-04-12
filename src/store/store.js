@@ -95,15 +95,20 @@ const store = createStore({
       commit('setBooks', books);
       commit('setBestSellers', bestSellers);
     },
-    login({ commit }, { username, password }) {
+    async login({ commit }, { username, password }) {
+      await new Promise(resolve => setTimeout(resolve, 1000)); // Simulate asynchronous operation (replace with actual login logic)
+    
       if (username === 'admin' && password === '1234') {
         commit('setUser', { username });
       } else {
-        console.error('Invalid username or password');
+        throw new Error('Invalid username or password'); // Throw an error for invalid credentials
       }
     },
-    logout({ commit }) {
-      commit('setUser', null);
+    
+    async logout({ commit }) {
+        await new Promise(resolve => setTimeout(resolve, 1000));
+    
+        commit('setUser', null);
     }
   },
   getters: {
