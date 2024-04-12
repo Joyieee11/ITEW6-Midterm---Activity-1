@@ -22,7 +22,7 @@
         // Handle login logic here, e.g., dispatch an action to Vuex
         this.$store.dispatch('login', { username: this.username, password: this.password });
         // Redirect to appropriate route upon successful login
-        this.$router.push('/');
+        this.$router.push('/list');
       }
     }
   };
