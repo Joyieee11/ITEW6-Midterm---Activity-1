@@ -5,7 +5,7 @@ import Signup from '../views/SignupView.vue';
 
 const routes = [
   {
-    path: '/',
+    path: '/list',
     name: 'list',
     component: BookListView
   },
@@ -15,7 +15,7 @@ const routes = [
     component: () => import( '../views/CartView.vue')
   },
   {
-    path: '/login',
+    path: '/',
     name: 'login',
     component: Login
   },
