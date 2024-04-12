@@ -1,5 +1,6 @@
 import { createStore } from 'vuex';
 
+
 const store = createStore({
   state: {
     cartItems: [],
@@ -44,7 +45,10 @@ const store = createStore({
     },
     setUser(state, user) {
       state.user = user;
-    }
+    },
+    clearCart(state) {
+      state.cartItems = []; // Clear the cart items array
+    },
   },
   actions: {
     addItemToCart({ commit }, { item, quantity }) {
@@ -106,10 +110,12 @@ const store = createStore({
     },
     
     async logout({ commit }) {
-        await new Promise(resolve => setTimeout(resolve, 1000));
-    
-        commit('setUser', null);
-    }
+      await new Promise(resolve => setTimeout(resolve, 1000));
+      commit('setUser', null);
+    }, 
+    clearCart({ commit }) {
+      commit('clearCart'); // Commit the clearCart mutation
+    }, 
   },
   getters: {
     cartItems: state => state.cartItems,
