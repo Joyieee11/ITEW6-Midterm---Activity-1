@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <nav v-if="isAuthenticated">
-      <router-link to="/" class="nav-link">
+      <router-link to="/list" class="nav-link">
         <i class="fa-solid fa-book-open"></i> Book List
       </router-link>
       <router-link to="/cart" class="nav-link">
