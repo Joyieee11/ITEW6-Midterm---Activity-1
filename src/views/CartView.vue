@@ -5,6 +5,7 @@
       <CartItems :items="cartItems" @remove="removeItem" @update-quantity="updateQuantity" />
     </div>
     <div class="total">Total: {{ calculateTotal }}</div>
+    <button @click="checkout" class="checkout-btn">Checkout</button>
   </div>
 </template>
 
@@ -30,7 +31,19 @@ export default {
     },
     updateQuantity(item) {
       this.updateCartItemQuantity(item);
-    }
+    },
+    checkout() {
+      if (this.cartItems.length === 0) {
+        alert('Your cart is empty. Please add items before checking out.');
+      } else {
+        alert('All books have been checked out.');
+        // Clear the cart in the Vuex store
+        this.clearCart();
+        // Navigate to "/list"
+        this.$router.push('/list');
+      }
+    },
+    ...mapActions(['removeItemFromCart', 'updateCartItemQuantity', 'clearCart']),
   }
 };
 </script>
@@ -62,5 +75,20 @@ export default {
   background-color: #9A031E;
   border-radius: 5px;
   color: #fff;
+}
+
+.checkout-btn {
+  margin-top: 20px;
+  background-color: #9A031E;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.checkout-btn:hover {
+  background-color: #7c0222;
 }
 </style>
