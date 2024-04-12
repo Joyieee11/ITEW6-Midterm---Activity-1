@@ -19,21 +19,17 @@
     },
     methods: {
       signup() {
-        // Example: perform validation
         if (!this.username || !this.password) {
           console.error('Please enter username and password');
           return;
         }
   
-        // Example: dispatch signup action to Vuex store
         this.$store.dispatch('signup', { username: this.username, password: this.password })
           .then(() => {
-            // Redirect to home or login page after successful signup
             this.$router.push('/');
           })
           .catch((error) => {
             console.error('Signup failed:', error.message);
-            // Handle signup failure (e.g., display error message)
           });
       }
     }
