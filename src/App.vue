@@ -7,6 +7,9 @@
       <router-link to="/cart" class="nav-link">
         <i class="fa-solid fa-cart-shopping"></i> My Cart
       </router-link>
+      <button @click="handleLogout" class="nav-link">
+        <i class="fa-solid fa-sign-out-alt"></i> Logout
+      </button>
     </nav>
     <router-view v-if="isAuthenticated" />
     <router-view v-else />
@@ -17,13 +20,20 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex';
+import { mapGetters, mapActions } from 'vuex';
 
 export default {
   name: 'App',
   computed: {
     ...mapGetters(['notification']),
     ...mapGetters(['isAuthenticated'])
+  },
+  methods: {
+    ...mapActions(['logout']),
+    handleLogout() {
+      this.logout();
+      this.$router.push('/'); // Redirect to the home page after logout
+    }
   }
 };
 </script>
